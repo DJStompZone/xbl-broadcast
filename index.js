@@ -45,6 +45,8 @@ async function oauthFlow() {
     const token = await flow.getXboxToken()
     const headerString = 'XBL3.0 x=' + token.userHash + ';' + token.XSTSToken;
 
+    console.log(headerString)
+
     return headerString;
 }
 
@@ -81,7 +83,7 @@ async function connectToWebSocket(token) {
  * @param {string} connectionId The connection id from the websocket
  */
 async function showWorldOnline(connectionId) {
-    let json = require('./data/create-session.json');
+    let json = require('./data/create-session');
     json.members.me.properties.system.connection = connectionId;
 
     const createSessionResponse = await axios.put(`https://sessiondirectory.xboxlive.com/serviceconfigs/4fc10100-5f7a-4470-899b-280835760c07/sessionTemplates/MinecraftLobby/sessions/${sessionId}`, json);
@@ -109,6 +111,7 @@ async function showWorldOnline(connectionId) {
     }
 
     console.log('Done');
+    console.log(sessionId);
 }
 
 initialize();
