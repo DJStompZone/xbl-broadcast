@@ -45,8 +45,6 @@ async function oauthFlow() {
     const token = await flow.getXboxToken()
     const headerString = 'XBL3.0 x=' + token.userHash + ';' + token.XSTSToken;
 
-    console.log(headerString)
-
     return headerString;
 }
 
@@ -111,7 +109,6 @@ async function showWorldOnline(connectionId) {
     }
 
     console.log('Done');
-    console.log(sessionId);
 }
 
 initialize();
